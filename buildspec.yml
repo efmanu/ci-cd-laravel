@@ -25,5 +25,5 @@ phases:
       - zip -r laravel-app-$VERSION.zip . -x .git/\*
       - zip -r laravel-app.zip . -x .git/\*
   artifacts:
-  files:
-    - laravel-app.zip
+    files:
+      - laravel-app.zip
