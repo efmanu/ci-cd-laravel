@@ -22,5 +22,8 @@ phases:
       # Upload the zip file to S3
       - echo "Uploading zip file to S3"
       - VERSION=$(grep '^APP_VERSION' .env | cut -d '=' -f2 | sed 's/\./_/g')
-      - zip -r laravel-app-$VERSION.zip . -x .git/\*
-      - zip -r laravel-app.zip . -x .git/\*
+      - zip -r ci-cd-laravel-$VERSION.zip . -x .git/\*
+      - aws s3 ci-cd-laravel-$VERSION.zip s3://ci-cd-laravel-test-bucket/ci-cd-laravel-$VERSION.zip
+artifacts:
+  files:
+    - ci-cd-laravel-*.zip
