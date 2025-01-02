@@ -1,5 +1,4 @@
 version: 0.2
-
 phases:
   install:
     runtime-versions:
@@ -15,17 +14,14 @@ phases:
       - echo "Getting version from .env file"
       - VERSION=$(grep '^APP_VERSION' .env | cut -d '=' -f2 | sed 's/\./_/g')
       - echo "Version is: $VERSION"
-      
       # Zip the application files with the modified version name
       - echo "Zipping the application"
       - zip -r ci-cd-laravel-$VERSION.zip ./*
-
   post_build:
     commands:
       # Upload the zip file to S3
       - echo "Uploading zip file to S3"
       - aws s3 cp ci-cd-laravel-$VERSION.zip s3://ci-cd-laravel-test-bucket/ci-cd-laravel-$VERSION.zip
-
 artifacts:
   files:
     - ci-cd-laravel-*.zip
