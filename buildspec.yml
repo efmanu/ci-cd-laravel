@@ -6,6 +6,8 @@ phases:
     commands:
       # Install dependencies using Composer
       - echo "Installing Composer dependencies"
+      - curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+      - composer global require laravel/installer
   build:
     commands:
       # Get the version from the .env file and replace periods with underscores
