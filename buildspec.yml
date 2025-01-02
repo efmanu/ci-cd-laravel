@@ -17,9 +17,9 @@ phases:
       - echo "Getting version from .env file"
       - VERSION=$(grep '^APP_VERSION' .env | cut -d '=' -f2 | sed 's/\./_/g')
       # Debug: Check the value of VERSION
-      - echo "Version is: $VERSION"
+      - echo "Version is $VERSION"
       # Add additional debugging if the VERSION is empty
-      - if [ -z "$VERSION" ]; then echo "VERSION is empty!"; else echo "VERSION is set to: $VERSION"; fi
+      - if [ -z "$VERSION" ]; then echo "VERSION is empty!"; else echo "VERSION is set to $VERSION"; fi
   post_build:
     commands:
       # Upload the zip file to S3
