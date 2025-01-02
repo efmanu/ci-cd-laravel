@@ -24,7 +24,7 @@ phases:
     commands:
       # Upload the zip file to S3
       - echo "Uploading zip file to S3"
-      - aws s3 cp ci-cd-laravel-$VERSION.zip s3://ci-cd-test-bucket/ci-cd-laravel-$VERSION.zip
+      - aws s3 cp ci-cd-laravel-$VERSION.zip s3://ci-cd-laravel-test-bucket/ci-cd-laravel-$VERSION.zip
 
 artifacts:
   files:
