@@ -24,6 +24,3 @@ phases:
       - VERSION=$(grep '^APP_VERSION' .env | cut -d '=' -f2 | sed 's/\./_/g')
       - zip -r laravel-app-$VERSION.zip . -x .git/\*
       - zip -r laravel-app.zip . -x .git/\*
-  artifacts:
-    files:
-      - laravel-app.zip
