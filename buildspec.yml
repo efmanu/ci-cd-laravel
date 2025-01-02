@@ -11,7 +11,9 @@ phases:
   build:
     commands:
       # Get the version from the .env file and replace periods with underscores
-      - echo "Getting version from .env file"\
+      - echo "Getting version from .env file"
+      - VERSION=$(grep '^APP_VERSION' .env | cut -d '=' -f2 | sed 's/\./_/g')
+      - echo "Version is ci-cd-laravel-$VERSION"
   post_build:
     commands:
       # Upload the zip file to S3
