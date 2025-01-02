@@ -6,22 +6,11 @@ phases:
     commands:
       # Install dependencies using Composer
       - echo "Installing Composer dependencies"
-      - curl -sS https://getcomposer.org/installer | php
-      - php composer.phar install
   build:
     commands:
       # Get the version from the .env file and replace periods with underscores
-      - echo "Getting version from .env file"
-      - VERSION=$(grep '^APP_VERSION' .env | cut -d '=' -f2 | sed 's/\./_/g')
-      - echo "Version is: $VERSION"
-      # Zip the application files with the modified version name
-      - echo "Zipping the application"
-      - zip -r ci-cd-laravel-$VERSION.zip ./*
+      - echo "Getting version from .env file"\
   post_build:
     commands:
       # Upload the zip file to S3
       - echo "Uploading zip file to S3"
-      - aws s3 cp ci-cd-laravel-$VERSION.zip s3://ci-cd-laravel-test-bucket/ci-cd-laravel-$VERSION.zip
-artifacts:
-  files:
-    - ci-cd-laravel-*.zip
