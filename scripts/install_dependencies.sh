@@ -1,8 +1,8 @@
 #!/bin/bash
 set -e
 
-sudo apt-get install -y software-properties-common
-sudo add-apt-repository -y ppa:ondrej/php
+apt-get install -y software-properties-common
+add-apt-repository -y ppa:ondrej/php
 
 # Update package lists and install dependencies
 apt-get update
@@ -14,7 +14,7 @@ service apache2 restart
 
 # Navigate to the Laravel application directory and install dependencies
 cd /var/www/html
-sudo curl -sS https://getcomposer.org/installer | sudo php -- --install-dir=/usr/local/bin --filename=composer
+curl -sS https://getcomposer.org/installer | sudo php -- --install-dir=/usr/local/bin --filename=composer
 composer global require laravel/installer
 composer install --no-dev --optimize-autoloader
 
